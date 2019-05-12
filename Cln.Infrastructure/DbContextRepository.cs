@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Cln.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -17,11 +18,13 @@ namespace Cln.Infrastructure
     public class DbContextRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class
     {
         private readonly DbContext _context;
+        private readonly IMapper _mapper;
         private readonly DbSet<TEntity> _dbSet;
 
-        public DbContextRepository(DbContext context)
+        public DbContextRepository(DbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
             _dbSet = context.Set<TEntity>();
         }
 
@@ -84,7 +87,7 @@ namespace Cln.Infrastructure
         {
             IQueryable<TEntity> query = CreateQuery(filter, orderBy, includeProperties, skip, take);
 
-            return await query.ProjectTo<TResult>().ToListAsync();
+            return await query.ProjectTo<TResult>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         /// <summary>

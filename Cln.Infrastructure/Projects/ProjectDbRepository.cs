@@ -1,15 +1,13 @@
-﻿using Cln.Application.Interfaces.Projects;
+﻿using AutoMapper;
+using Cln.Application.Interfaces.Projects;
 using Cln.Entities.Projects;
 
 namespace Cln.Infrastructure.Projects
 {
     public class ProjectDbRepository : DbContextRepository<Project, int>, IProjectRepository
     {
-        private readonly ProjectDbContext _dbContext;
-
-        public ProjectDbRepository(ProjectDbContext dbContext) : base(dbContext)
+        public ProjectDbRepository(ProjectDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
-            _dbContext = dbContext;
         }
     }
 }

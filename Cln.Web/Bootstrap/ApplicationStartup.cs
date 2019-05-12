@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using AutoMapper;
 using Cln.Api.Handlers.Authorization;
 using Cln.Application.Interfaces.Projects;
@@ -41,6 +43,19 @@ namespace Cln.Web.Bootstrap
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Todo API", Version = "v1" });
+
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"Cln.Controllers.Todo.xml"));
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"Cln.Application.Todo.xml"));
+
+                c.CustomSchemaIds(classInfo =>
+                {
+                    string returnedValue = classInfo.Name;
+
+                    if (returnedValue.EndsWith("Model"))
+                        returnedValue = returnedValue.Replace("Model", string.Empty);
+
+                    return returnedValue;
+                });
             });
 
             return mvcBuilder;
@@ -65,10 +80,6 @@ namespace Cln.Web.Bootstrap
                 c.RoutePrefix = "swagger";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API V1");
             });
-        }
-
-        public static void ConfigureModules(IApplicationBuilder app, IHostingEnvironment env, Assembly[] assemblies)
-        {
         }
     }
 }

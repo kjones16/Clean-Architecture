@@ -62,7 +62,7 @@ namespace Cln.Applilcation.Todo.UnitTests.Services
         {
             var mapper = new Mapper(new MapperConfiguration(m => m.AddProfile<TodoMappingProfile>()));
 
-            return new TodoItemService(new TodoItemDbRepository(todoDbContext), new TodoListDbRepository(todoDbContext), new TodoPersistentChanges(todoDbContext), mapper);
+            return new TodoItemService(new TodoItemDbRepository(todoDbContext, mapper), new TodoListDbRepository(todoDbContext, mapper), new TodoPersistentChanges(todoDbContext), mapper);
         }
 
         private TodoDbContext CreateTodoDbContext()

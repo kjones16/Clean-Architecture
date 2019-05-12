@@ -3,9 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cln.Application.Todo.Models
 {
-    public class TodoListModel : TodoItemUpdateModel
+    public class TodoListCreateModel : Model
     {
         [Required]
-        public long Id { get; set; }
-    }
+        [MaxLength(125)]
+        public string Title { get; set; }
+     }
 }

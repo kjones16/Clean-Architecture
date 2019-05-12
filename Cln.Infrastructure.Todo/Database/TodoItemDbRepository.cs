@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Cln.Application.Todo.Interfaces;
 using Cln.Entities.Todo;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ namespace Cln.Infrastructure.Todo.Database
     {
         private readonly TodoDbContext _dbContext;
 
-        public TodoItemDbRepository(TodoDbContext dbContext) : base(dbContext)
+        public TodoItemDbRepository(TodoDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
             _dbContext = dbContext;
         }

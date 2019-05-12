@@ -9,7 +9,7 @@ namespace Cln.Application.Todo.Services.TodoList
 {
     public class TodoListService : ITodoListService
     {
-        private const string TitleExistMessage = "A todo list with that title already exist in the project.";
+        private const string _titleExistMessage = "A todo list with that title already exist in the project.";
 
         private readonly ITodoListRepository _todoListRepository;
         private readonly ITodoPersistentChanges _todoUnitOfWork;
@@ -22,10 +22,10 @@ namespace Cln.Application.Todo.Services.TodoList
             _mapper = mapper;
         }
 
-        public async Task<TodoListModel> AddTodoList(long projectId, TodoListUpsertModel todoList)
+        public async Task<TodoListModel> AddTodoList(long projectId, TodoListCreateModel todoList)
         {
             if (await _todoListRepository.ExistsByTitleAsync(projectId, todoList.Title))
-                throw new ModelValidationException(TitleExistMessage, nameof(todoList.Title));
+                throw new ModelValidationException(_titleExistMessage, nameof(todoList.Title));
 
             var entity = new Entities.Todo.TodoList()
             {
@@ -67,15 +67,15 @@ namespace Cln.Application.Todo.Services.TodoList
             return _mapper.Map<TodoListModel>(existingValue);
         }
 
-        public async Task<TodoListModel> UpdateTodoList(long projectId, long listId, TodoListUpsertModel todoList)
+        public async Task<TodoListModel> UpdateTodoList(long listId, TodoListUpdateModel todoList)
         {
             var existingValue = await _todoListRepository.GetById(listId);
 
             if (existingValue == null)
                 throw new KeyNotFoundException();
-
-            if (await _todoListRepository.ExistsByTitleAsync(projectId, todoList.Title))
-                throw new ModelValidationException(TitleExistMessage, nameof(todoList.Title));
+                       
+            if (await _todoListRepository.ExistsByTitleAsync(existingValue.ProjectId, todoList.Title))
+                throw new ModelValidationException(_titleExistMessage, nameof(todoList.Title));
 
             existingValue.Title = todoList.Title;
 

@@ -34,10 +34,6 @@ namespace Cln.Web.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             ApplicationStartup.Configure(app, env);
-
-            var apiControllers = new[] { TodoStartup.GetAssembly() };
-
-            ApplicationStartup.ConfigureModules(app, env, apiControllers);
         }
     }
 }

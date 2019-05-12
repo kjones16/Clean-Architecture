@@ -2,8 +2,7 @@
 
 namespace Cln.Application.Todo.Models
 {
-    public class TodoListUpsertModel : Model
+    public class TodoListUpdateModel : TodoListCreateModel
     {
-        public string Title { get; set; }
     }
 }

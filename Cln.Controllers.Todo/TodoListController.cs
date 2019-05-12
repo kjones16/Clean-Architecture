@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Cln.Controllers.Todo
 {
     [Produces("application/json")]
-    [Route("api/project/{projectId:long}/todolist")] // API Design https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design
+    [Route("api")] // API Design https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design
     public class TodoListController : Controller
     {
         private readonly ITodoListService _todoService;
@@ -18,46 +18,68 @@ namespace Cln.Controllers.Todo
             _todoService = todoService;
         }
 
-        [HttpDelete("{id}")]
+        /// <summary>
+        /// Deletes a todo list and all of it's todo items.
+        /// </summary>
+        /// <param name="id">The id of the todo list.</param>
+        [HttpDelete("todolist/{id}")]
         [ProducesResponseType(typeof(TodoListModel), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task Delete(long projectId, long id)
+        public async Task Delete(long id)
         {
             await _todoService.DeleteTodoList(id);
 
             Accepted();
         }
 
-        [HttpGet("{id}", Name = "GetTodoList")]
+        /// <summary>
+        /// Gets a todo list entry.
+        /// </summary>
+        /// <param name="id">The id of the todo list.</param>
+        [HttpGet("todolist/{id}", Name = "GetTodoList")]
         [ProducesResponseType(typeof(TodoListModel), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetTodoList(long projectId, long id)
+        public async Task<IActionResult> GetTodoList(long id)
         {
             return Ok(await _todoService.GetTodoList(id));
         }
 
-        [HttpGet(Name = "GetTodoLists")]
+        /// <summary>
+        /// Get all the todo lists in a project.
+        /// </summary>
+        /// <param name="projectId">The id of the project.</param>
+        [HttpGet("project/{projectId:long}/todolist", Name = "GetTodoLists")]
         [ProducesResponseType(typeof(IEnumerable<TodoListModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetTodoLists(long projectId)
         {
             return Ok(await _todoService.GetAllTodoLists(projectId));
         }
 
-        [HttpPost]
-        [ProducesResponseType(typeof(TodoListUpsertModel), StatusCodes.Status201Created)]
+        /// <summary>
+        /// Creates a new todo list in a given project.
+        /// </summary>
+        /// <param name="projectId">The id of the project to add the list to.</param>
+        /// <param name="value">The new todo list.</param>
+        [HttpPost("project/{projectId:long}/todolist")]
+        [ProducesResponseType(typeof(TodoListCreateModel), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(long projectId, [FromBody] TodoListUpsertModel value)
+        public async Task<IActionResult> Post(long projectId, [FromBody] TodoListCreateModel value)
         {
             var result = await _todoService.AddTodoList(projectId, value);
 
             return CreatedAtAction(nameof(GetTodoList), new { projectId, id = result.Id}, result);
         }
 
-        [HttpPut]
+        /// <summary>
+        /// Updates an existing todo list.
+        /// </summary>
+        /// <param name="listId">The id of the list to update.</param>
+        /// <param name="value">The updated list values</param>
+        [HttpPut("todolist/{listId:long}")]
         [ProducesResponseType(typeof(TodoListModel), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task Put(long projectId, long listId, [FromBody] TodoListUpsertModel value)
+        public async Task Put(long listId, [FromBody] TodoListUpdateModel value)
         {
-            await _todoService.UpdateTodoList(projectId, listId, value);
+            await _todoService.UpdateTodoList(listId, value);
 
             Accepted();
         }

@@ -6,7 +6,7 @@ namespace Cln.Application.Todo.Services.TodoList
 {
     public interface ITodoListService
     {
-        Task<TodoListModel> AddTodoList(long projectId, TodoListUpsertModel todoList);
+        Task<TodoListModel> AddTodoList(long projectId, TodoListCreateModel todoList);
 
         Task DeleteTodoList(long todoListId);
 
@@ -14,6 +14,6 @@ namespace Cln.Application.Todo.Services.TodoList
 
         Task<TodoListModel> GetTodoList(long todoListId);
 
-        Task<TodoListModel> UpdateTodoList(long projectId, long listId, TodoListUpsertModel todoList);
+        Task<TodoListModel> UpdateTodoList(long listId, TodoListUpdateModel todoList);
     }
 }

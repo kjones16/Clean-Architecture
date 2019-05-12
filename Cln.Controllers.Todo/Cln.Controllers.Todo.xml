@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cln.Controllers.Todo</name>
+    </assembly>
+    <members>
+        <member name="M:Cln.Controllers.Todo.TodoItemController.GetTodoItem(System.Int64)">
+            <summary>
+            Get a single todo item.
+            </summary>
+            <param name="id">The id of the todo item</param>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoItemController.GetTodoItems(System.Int64)">
+            <summary>
+            Gets all the todo items in a list.
+            </summary>
+            <param name="listId">The id of the list to get todo items for</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoItemController.Create(System.Int64,Cln.Application.Todo.Models.TodoItemCreateModel)">
+            <summary>
+            Creates and adds a todo item to a todo list.
+            </summary>
+            <param name="listId">The id to the todo list to add to.</param>
+            <param name="value">The values for the new todo item</param>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoItemController.Update(System.Int64,Cln.Application.Todo.Models.TodoItemUpdateModel)">
+            <summary>
+            Updates an existing todo item.
+            </summary>
+            <param name="id">The id of the todo item to update.</param>
+            <param name="value">The updated values to apply to the todo item.</param>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoItemController.MarkAllComplete(System.Int64)">
+            <summary>
+            Marks all the todo items in a todo list to complete.
+            </summary>
+            <param name="listId">The id of the todo list.</param>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoItemController.Delete(System.Int64)">
+            <summary>
+            Deletes a todo item.
+            </summary>
+            <param name="id">The id of the todo item to delete.</param>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoListController.Delete(System.Int64)">
+            <summary>
+            Deletes a todo list and all of it's todo items.
+            </summary>
+            <param name="id">The id of the todo list.</param>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoListController.GetTodoList(System.Int64)">
+            <summary>
+            Gets a todo list entry.
+            </summary>
+            <param name="id">The id of the todo list.</param>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoListController.GetTodoLists(System.Int64)">
+            <summary>
+            Get all the todo lists in a project.
+            </summary>
+            <param name="projectId">The id of the project.</param>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoListController.Post(System.Int64,Cln.Application.Todo.Models.TodoListCreateModel)">
+            <summary>
+            Creates a new todo list in a given project.
+            </summary>
+            <param name="projectId">The id of the project to add the list to.</param>
+            <param name="value">The new todo list.</param>
+        </member>
+        <member name="M:Cln.Controllers.Todo.TodoListController.Put(System.Int64,Cln.Application.Todo.Models.TodoListUpdateModel)">
+            <summary>
+            Updates an existing todo list.
+            </summary>
+            <param name="listId">The id of the list to update.</param>
+            <param name="value">The updated list values</param>
+        </member>
+    </members>
+</doc>

@@ -19,13 +19,7 @@ namespace Cln.Web.Api.Filters
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (context.ActionArguments.TryGetValue("projectId", out object projectId) &&
-                _authorizationService.AuthorizeAsync(context.HttpContext.User, projectId, "TodoAccessPolicy").Result.Succeeded)
-            {
-                return;
-            }
-
-            context.Result = new ForbidResult();
+            return; // Call authorization code here.
         }
     }
 }

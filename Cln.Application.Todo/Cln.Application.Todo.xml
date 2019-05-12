@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cln.Application.Todo</name>
+    </assembly>
+    <members>
+        <member name="P:Cln.Application.Todo.Models.TodoItemCreateModel.Title">
+            <summary>
+            The title must be unique within the list it belongs to.
+            </summary>
+        </member>
+    </members>
+</doc>
