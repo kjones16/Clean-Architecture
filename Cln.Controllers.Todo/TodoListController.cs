@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using Cln.Application.Todo.Models;
 using Cln.Application.Todo.Services.TodoList;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cln.Controllers.Todo
 {
+    [EnableCors("CorsPolicy")]
     [Produces("application/json")]
     [Route("api")] // API Design https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design
     public class TodoListController : Controller
@@ -25,7 +27,7 @@ namespace Cln.Controllers.Todo
         [HttpDelete("todolist/{id}")]
         [ProducesResponseType(typeof(TodoListModel), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task Delete(long id)
+        public async Task DeleteTodoList(long id)
         {
             await _todoService.DeleteTodoList(id);
 
@@ -62,7 +64,7 @@ namespace Cln.Controllers.Todo
         [HttpPost("project/{projectId:long}/todolist")]
         [ProducesResponseType(typeof(TodoListCreateModel), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(long projectId, [FromBody] TodoListCreateModel value)
+        public async Task<IActionResult> CreateTodoList(long projectId, [FromBody] TodoListCreateModel value)
         {
             var result = await _todoService.AddTodoList(projectId, value);
 
@@ -77,7 +79,7 @@ namespace Cln.Controllers.Todo
         [HttpPut("todolist/{listId:long}")]
         [ProducesResponseType(typeof(TodoListModel), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task Put(long listId, [FromBody] TodoListUpdateModel value)
+        public async Task UpdateTodoList(long listId, [FromBody] TodoListUpdateModel value)
         {
             await _todoService.UpdateTodoList(listId, value);
 

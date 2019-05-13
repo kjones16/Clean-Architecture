@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28902.138
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{007EB128-E265-40C9-847E-A45F2E0469DC}"
 EndProject
@@ -35,13 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cln.Entities", "Cln.Entitie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cln.Entities.Todo", "Cln.Entities.Todo\Cln.Entities.Todo.csproj", "{CBA4BF9E-5E77-4CE6-87A3-ED7E52CEAEF6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Debug", "Debug", "{39C5A398-2545-47C3-8DAD-31D270B485C5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cln.Controllers.Todo", "Cln.Controllers.Todo\Cln.Controllers.Todo.csproj", "{6A8E448C-E91F-41F3-AED8-ED2BCBA29053}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cln.Web.Host", "Cln.Web.Host\Cln.Web.Host.csproj", "{62CB6730-AAD4-434D-9575-A539A7150D83}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Debug.Web.Host.Todo", "Debug.Web.Host.Todo\Debug.Web.Host.Todo.csproj", "{93535320-BBD0-417A-B7DD-81E3EFEE2B25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,10 +93,6 @@ Global
 		{62CB6730-AAD4-434D-9575-A539A7150D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62CB6730-AAD4-434D-9575-A539A7150D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62CB6730-AAD4-434D-9575-A539A7150D83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93535320-BBD0-417A-B7DD-81E3EFEE2B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93535320-BBD0-417A-B7DD-81E3EFEE2B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93535320-BBD0-417A-B7DD-81E3EFEE2B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93535320-BBD0-417A-B7DD-81E3EFEE2B25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,70 +113,10 @@ Global
 		{4FD23937-03A2-42FD-8AE9-73252B065817} = {007EB128-E265-40C9-847E-A45F2E0469DC}
 		{1AB89468-26E1-4F98-A786-3669A44FD3B6} = {67CD8E5F-7947-45D9-BC1A-151895DABCA7}
 		{CBA4BF9E-5E77-4CE6-87A3-ED7E52CEAEF6} = {CA15B358-69F2-466C-BC84-11990568B6EF}
-		{39C5A398-2545-47C3-8DAD-31D270B485C5} = {CA15B358-69F2-466C-BC84-11990568B6EF}
 		{6A8E448C-E91F-41F3-AED8-ED2BCBA29053} = {CA15B358-69F2-466C-BC84-11990568B6EF}
 		{62CB6730-AAD4-434D-9575-A539A7150D83} = {007EB128-E265-40C9-847E-A45F2E0469DC}
-		{93535320-BBD0-417A-B7DD-81E3EFEE2B25} = {39C5A398-2545-47C3-8DAD-31D270B485C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0E5C425-95F0-4A27-864F-3083D7875878}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 14
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tightlines.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Cln.Application.Todo\\Cln.Application.Todo.csproj
-		SccProjectTopLevelParentUniqueName1 = CleanArchitecture1.sln
-		SccProjectName1 = Cln.Application.Todo
-		SccLocalPath1 = Cln.Application.Todo
-		SccProjectUniqueName2 = Cln.Application\\Cln.Application.csproj
-		SccProjectTopLevelParentUniqueName2 = CleanArchitecture1.sln
-		SccProjectName2 = Cln.Application
-		SccLocalPath2 = Cln.Application
-		SccProjectUniqueName3 = Cln.Common\\Cln.Common.csproj
-		SccProjectTopLevelParentUniqueName3 = CleanArchitecture1.sln
-		SccProjectName3 = Cln.Common
-		SccLocalPath3 = Cln.Common
-		SccProjectUniqueName4 = Cln.Infrastructure.Todo\\Cln.Infrastructure.Todo.csproj
-		SccProjectTopLevelParentUniqueName4 = CleanArchitecture1.sln
-		SccProjectName4 = Cln.Infrastructure.Todo
-		SccLocalPath4 = Cln.Infrastructure.Todo
-		SccProjectUniqueName5 = Cln.Infrastructure\\Cln.Infrastructure.csproj
-		SccProjectTopLevelParentUniqueName5 = CleanArchitecture1.sln
-		SccProjectName5 = Cln.Infrastructure
-		SccLocalPath5 = Cln.Infrastructure
-		SccProjectUniqueName6 = Cln.Infrastructure.Todo.Tests\\Cln.Infrastructure.Todo.Tests.csproj
-		SccProjectTopLevelParentUniqueName6 = CleanArchitecture1.sln
-		SccProjectName6 = Cln.Infrastructure.Todo.Tests
-		SccLocalPath6 = Cln.Infrastructure.Todo.Tests
-		SccProjectUniqueName7 = Cln.Applilcation.Todo.UnitTests\\Cln.Applilcation.Todo.UnitTests.csproj
-		SccProjectTopLevelParentUniqueName7 = CleanArchitecture1.sln
-		SccProjectName7 = Cln.Applilcation.Todo.UnitTests
-		SccLocalPath7 = Cln.Applilcation.Todo.UnitTests
-		SccProjectUniqueName8 = Cln.Web\\Cln.Web.csproj
-		SccProjectTopLevelParentUniqueName8 = CleanArchitecture1.sln
-		SccProjectName8 = Cln.Web
-		SccLocalPath8 = Cln.Web
-		SccProjectUniqueName9 = Cln.Entities\\Cln.Entities.csproj
-		SccProjectTopLevelParentUniqueName9 = CleanArchitecture1.sln
-		SccProjectName9 = Cln.Entities
-		SccLocalPath9 = Cln.Entities
-		SccProjectUniqueName10 = Cln.Entities.Todo\\Cln.Entities.Todo.csproj
-		SccProjectTopLevelParentUniqueName10 = CleanArchitecture1.sln
-		SccProjectName10 = Cln.Entities.Todo
-		SccLocalPath10 = Cln.Entities.Todo
-		SccProjectUniqueName11 = Cln.Controllers.Todo\\Cln.Controllers.Todo.csproj
-		SccProjectTopLevelParentUniqueName11 = CleanArchitecture1.sln
-		SccProjectName11 = Cln.Controllers.Todo
-		SccLocalPath11 = Cln.Controllers.Todo
-		SccProjectUniqueName12 = Cln.Web.Host\\Cln.Web.Host.csproj
-		SccProjectTopLevelParentUniqueName12 = CleanArchitecture1.sln
-		SccProjectName12 = Cln.Web.Host
-		SccLocalPath12 = Cln.Web.Host
-		SccProjectUniqueName13 = Debug.Web.Host.Todo\\Debug.Web.Host.Todo.csproj
-		SccProjectTopLevelParentUniqueName13 = CleanArchitecture1.sln
-		SccProjectName13 = Debug.Web.Host.Todo
-		SccLocalPath13 = Debug.Web.Host.Todo
 	EndGlobalSection
 EndGlobal

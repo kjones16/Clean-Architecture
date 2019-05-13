@@ -23,6 +23,16 @@ namespace Cln.Web.Bootstrap
     {
         public static IMvcBuilder ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials());
+            });
+
             var mvcBuilder = services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(ProjectAuthorizationFilter)); // Applies to all controllers.
@@ -73,6 +83,7 @@ namespace Cln.Web.Bootstrap
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

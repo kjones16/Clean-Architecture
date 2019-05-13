@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using Cln.Application.Todo.Models;
 using Cln.Application.Todo.Services.TodoItem;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cln.Controllers.Todo
 {
+    [EnableCors("CorsPolicy")]
     [Produces("application/json")]
     [Route("api")]
     public class TodoItemController : Controller
@@ -49,7 +51,7 @@ namespace Cln.Controllers.Todo
         [HttpPost("todolist/{listId:long}/todoitem")]
         [ProducesResponseType(typeof(TodoItemUpdateModel), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Create(long listId, [FromBody] TodoItemCreateModel value)
+        public async Task<IActionResult> CreateTodoItem(long listId, [FromBody] TodoItemCreateModel value)
         {
             var result = await _todoItemService.CreateTodoItem(listId, value);
 
@@ -67,7 +69,7 @@ namespace Cln.Controllers.Todo
         [HttpPut("todoitem/{id:long}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task Update(long id, [FromBody] TodoItemUpdateModel value)
+        public async Task UpdateTodoItem(long id, [FromBody] TodoItemUpdateModel value)
         {
             await _todoItemService.UpdateTodoItem(id, value);
 
@@ -95,7 +97,7 @@ namespace Cln.Controllers.Todo
         [HttpDelete("todoitem/{id:long}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task Delete(long id)
+        public async Task DeleteTodoItem(long id)
         {
             await _todoItemService.DeleteTodoItem(id);
 
