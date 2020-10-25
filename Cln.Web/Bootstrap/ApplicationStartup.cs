@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -27,7 +28,7 @@ namespace Cln.Web.Bootstrap
             {
                 options.AddPolicy("CorsPolicy",
                     builder => builder
-                    .AllowAnyOrigin()
+                    .WithOrigins("http://localhost")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials());
@@ -40,7 +41,7 @@ namespace Cln.Web.Bootstrap
                 options.Filters.Add(typeof(ExceptionToStatusCodeFilter)); // Applies to all controller
             }).AddJsonOptions(options =>
             {
-                options.SerializerSettings.Formatting = Formatting.Indented;
+                options.JsonSerializerOptions.WriteIndented = true;
             });
 
             services.AddAuthentication(IISDefaults.AuthenticationScheme);
@@ -52,7 +53,7 @@ namespace Cln.Web.Bootstrap
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Todo API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Todo API", Version = "v1" });
 
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"Cln.Controllers.Todo.xml"));
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"Cln.Application.Todo.xml"));
@@ -83,8 +84,15 @@ namespace Cln.Web.Bootstrap
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseRouting();
             app.UseCors("CorsPolicy");
-            app.UseMvc();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
